@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import loadScript from "./functions/loadScript";
+
 class App extends Component {
 
   map;
 
   renderMap = () => {
-    loadScripts("https://maps.googleapis.com/maps/api/js?key=AIzaSyDfJH3UfcNnAjFju7c5PExoGuPx_eaFklE&callback=initMap");
+    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDCmIPpcyP0wo2rE9LPDUYtFCHqapw2TIQ&callback=initMap");
   }
 
   componentDidMount() {
@@ -31,13 +33,6 @@ class App extends Component {
   }
 }
 
-function loadScripts(url) {
-  var index = window.document.getElementsByTagName('script')[0];
-  var script = window.document.createElement('script');
-  script.src = url;
-  script.async = true;
-  script.defer = true;
-  index.parentNode.insertBefore(script, index);
-}
+
 
 export default App;
