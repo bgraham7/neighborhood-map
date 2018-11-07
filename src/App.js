@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import loadScript from "./functions/loadScript";
+import * as fourSquare from "./apis/foursquare-api";
 
 class App extends Component {
 
@@ -10,6 +10,13 @@ class App extends Component {
 
   renderMap = () => {
     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDCmIPpcyP0wo2rE9LPDUYtFCHqapw2TIQ&callback=initMap");
+    fourSquare.searchPlaces(0, 0, "")
+    .then(function(data) {
+      console.log(data);
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
   }
 
   componentDidMount() {
