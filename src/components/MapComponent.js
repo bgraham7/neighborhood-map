@@ -24,7 +24,9 @@ const MapComponent = compose(
               position={{ lat: marker.position.lat, lng: marker.position.lng }}>
         {marker.isOpen && 
           <InfoWindow
-              options={{ enableEventPropagation: true,alignBottom: true }}
+              onCloseClick={() => props.toggleInfoBox(marker.id)}
+              options={{ enableEventPropagation: true,
+                alignBottom: true }}
             >
             <div className="info-box">
               <div className="info-box-content">
