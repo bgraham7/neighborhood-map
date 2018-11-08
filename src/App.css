@@ -8,6 +8,17 @@ html, body {
   padding: 0;
 }
 
+
+main {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.content-bar {
+  width: 250px;
+}
+
 .map-wrapper {
-  height: 100vh; width: 100%
+  height: 100vh; 
+  flex-grow: 1;
 }

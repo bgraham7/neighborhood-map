@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import MyMapComponent from './components/map';
+import MapComponent from './components/MapComponent';
+import MarkerContentBar from './components/MarkerContentBar';
 import * as fourSquare from "./apis/foursquare-api";
 
 class App extends Component {
@@ -45,12 +46,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="map-wrapper">
-        <MyMapComponent 
-          center={this.state.myCoords}
-          markers={this.state.markers}
-        />
-      </div>
+      <main>
+        <div className="content-bar">
+          <MarkerContentBar 
+            markers={this.state.markers}
+          />
+        </div>
+        <div className="map-wrapper">
+          <MapComponent 
+            center={this.state.myCoords}
+            markers={this.state.markers}
+          />
+        </div>
+      </main>
     );
   }
 }

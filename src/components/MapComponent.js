@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-const MyMapComponent = compose(
+const MapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDCmIPpcyP0wo2rE9LPDUYtFCHqapw2TIQ&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
@@ -22,4 +22,4 @@ const MyMapComponent = compose(
   </GoogleMap>
 );
 
-export default MyMapComponent;
+export default MapComponent;
