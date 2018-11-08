@@ -35,3 +35,8 @@
     border-bottom: 1px solid white;
 }
 
+.place.open {
+    color: black;
+    background-color: white;
+}
+

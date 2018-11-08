@@ -12,7 +12,8 @@ class App extends Component {
           </div>
           <div className="places">
             {this.props.markers.map(marker => (
-                <div className="place" key={marker.id}>{marker.title}</div>
+                <div className={`place ${marker.isOpen? 'open': ''}`} 
+                key={marker.id}>{marker.title}</div>
             ))}
           </div>
       </div>
