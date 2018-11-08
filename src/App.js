@@ -25,12 +25,12 @@ class App extends Component {
     fourSquare.searchPlaces(this.state.myCoords.lat, this.state.myCoords.lng)
     .then(function(data) {
       var items = data.response.groups[0].items;
-      console.log(items);
       let markers = [];
       for(let i = 0; i < items.length; i++) {
         let item = items[i];
         markers.push({
           id: item.venue.id,
+          isOpen: false,
           position: { lat: item.venue.location.lat, lng: item.venue.location.lng },
           title: item.venue.name
         });
@@ -42,6 +42,19 @@ class App extends Component {
     .catch(function(err) {
         console.log(err);
     });
+  }
+
+  toggleInfoBox(id) {
+    this.setState({
+      markers: this.state.markers.map(marker => {
+          if(marker.id == id) {
+            marker.isOpen = !marker.isOpen;
+          } else {
+            marker.isOpen = false;
+          }
+          return marker;
+        })
+      });
   }
 
   render() {
@@ -56,6 +69,7 @@ class App extends Component {
           <MapComponent 
             center={this.state.myCoords}
             markers={this.state.markers}
+            toggleInfoBox={(id) => this.toggleInfoBox(id)}
           />
         </div>
       </main>

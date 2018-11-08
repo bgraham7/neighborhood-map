@@ -1,6 +1,8 @@
 import React, { Component } from 'react';   
-import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { compose, withProps } from "recompose";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
+
+import './MapComponent.css';
 
 const MapComponent = compose(
   withProps({
@@ -17,7 +19,20 @@ const MapComponent = compose(
     defaultCenter={props.center}
   >
   {props.markers.map(marker => (
-      <Marker key={marker.id} position={{ lat: marker.position.lat, lng: marker.position.lng }} />
+      <Marker key={marker.id} 
+              onClick={() => props.toggleInfoBox(marker.id)}
+              position={{ lat: marker.position.lat, lng: marker.position.lng }}>
+        {marker.isOpen && 
+          <InfoWindow
+              options={{ enableEventPropagation: true,alignBottom: true }}
+            >
+            <div className="info-box">
+              <div className="info-box-content">
+                {marker.title}
+              </div>
+            </div>
+          </InfoWindow>}
+      </Marker>
   ))}
   </GoogleMap>
 );
