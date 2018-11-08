@@ -19,10 +19,9 @@ class App extends Component {
     this.searchPlaces();
   }
 
-
-  searchPlaces() {
+  searchPlaces(query = "") {
     var self = this;
-    fourSquare.searchPlaces(this.state.myCoords.lat, this.state.myCoords.lng)
+    fourSquare.searchPlaces(this.state.myCoords.lat, this.state.myCoords.lng, query)
     .then(function(data) {
       var items = data.response.groups[0].items;
       let markers = [];
@@ -64,6 +63,7 @@ class App extends Component {
           <MarkerContentBar 
             markers={this.state.markers}
             toggleInfoBox={(id) => this.toggleInfoBox(id)}
+            searchPlaces={(query) => this.searchPlaces(query)}
           />
         </div>
         <div className="map-wrapper">
