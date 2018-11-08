@@ -13,6 +13,7 @@ class App extends Component {
           <div className="places">
             {this.props.markers.map(marker => (
                 <div className={`place ${marker.isOpen? 'open': ''}`} 
+                onClick={() => this.props.toggleInfoBox(marker.id)}
                 key={marker.id}>{marker.title}</div>
             ))}
           </div>

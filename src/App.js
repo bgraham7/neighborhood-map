@@ -63,6 +63,7 @@ class App extends Component {
         <div className="content-bar">
           <MarkerContentBar 
             markers={this.state.markers}
+            toggleInfoBox={(id) => this.toggleInfoBox(id)}
           />
         </div>
         <div className="map-wrapper">
