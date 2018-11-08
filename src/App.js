@@ -6,33 +6,37 @@ import * as fourSquare from "./apis/foursquare-api";
 
 class App extends Component {
 
-  // Time Square
-  myCoords = {
-    lat: 40.758896,
-    lng: -73.985130
+  constructor(props) {
+    super(props);
+    this.state = {
+      myCoords: { lat: 40.758896, lng: -73.985130 },
+      markers: []
+    };
   }
 
-  markers;
-
   componentDidMount() {
-    
+    this.searchPlaces();
   }
 
 
   searchPlaces() {
-    fourSquare.searchPlaces(this.myCoords.lat, this.myCoords.lng)
+    var self = this;
+    fourSquare.searchPlaces(this.state.myCoords.lat, this.state.myCoords.lng)
     .then(function(data) {
       var items = data.response.groups[0].items;
       console.log(items);
+      let markers = [];
       for(let i = 0; i < items.length; i++) {
         let item = items[i];
-        var marker = new window.google.maps.Marker({
+        markers.push({
+          id: item.venue.id,
           position: { lat: item.venue.location.lat, lng: item.venue.location.lng },
-          map: this.map,
           title: item.venue.name
         });
-        this.markers.push(marker);
       }
+      self.setState({
+        markers: markers
+      });
     })
     .catch(function(err) {
         console.log(err);
@@ -42,7 +46,9 @@ class App extends Component {
   render() {
     return (
       <div className="map-wrapper">
-        <SimpleMap />
+        <SimpleMap
+          markers={this.state.markers}
+        />
       </div>
     );
   }
