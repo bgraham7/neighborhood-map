@@ -1,47 +1,25 @@
-import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
- 
-class MarkerComponent extends Component {
-    render() {
-        return(
-            <div>
-                <i class="fas fa-2x fa-map-marker-alt"></i>
-            </div>
-        );
-    }
-}
+import React, { Component } from 'react';   
+import { compose, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-class SimpleMap extends Component {
-    static defaultProps = {
-      center: {
-        lat: 40.758896,
-        lng: -73.985130
-      },
-      zoom: 11
-    };
-   
-    render() {
-      return (
-        // Important! Always set the container height explicitly
-        <div style={{ height: '100vh', width: '100%' }}>
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: "AIzaSyDCmIPpcyP0wo2rE9LPDUYtFCHqapw2TIQ" }}
-            defaultCenter={this.props.center}
-            defaultZoom={this.props.zoom}
-          >
-            {this.props.markers.map(marker => (
-                <MarkerComponent
-                key={marker.id}
-                lat={marker.position.lat}
-                lng={marker.position.long}
-                title={marker.title}
-              />
-            ))}
-            
-          </GoogleMapReact>
-        </div>
-      );
-    }
-  }
-   
-  export default SimpleMap;
+const MyMapComponent = compose(
+  withProps({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDCmIPpcyP0wo2rE9LPDUYtFCHqapw2TIQ&v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `100%` }} />,
+    mapElement: <div style={{ height: `100%` }} />,
+  }),
+  withScriptjs,
+  withGoogleMap
+)((props) =>
+  <GoogleMap
+    defaultZoom={15}
+    defaultCenter={props.center}
+  >
+  {props.markers.map(marker => (
+      <Marker key={marker.id} position={{ lat: marker.position.lat, lng: marker.position.lng }} />
+  ))}
+  </GoogleMap>
+);
+
+export default MyMapComponent;

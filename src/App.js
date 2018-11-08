@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import SimpleMap from './components/map';
+import MyMapComponent from './components/map';
 import * as fourSquare from "./apis/foursquare-api";
 
 class App extends Component {
@@ -46,7 +46,8 @@ class App extends Component {
   render() {
     return (
       <div className="map-wrapper">
-        <SimpleMap
+        <MyMapComponent 
+          center={this.state.myCoords}
           markers={this.state.markers}
         />
       </div>
