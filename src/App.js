@@ -11,7 +11,8 @@ class App extends Component {
     super(props);
     this.state = {
       myCoords: { lat: 40.758896, lng: -73.985130 },
-      markers: []
+      markers: [],
+      errorMessage: ''
     };
   }
 
@@ -39,7 +40,7 @@ class App extends Component {
       });
     })
     .catch(function(err) {
-        console.log(err);
+        this.setError("An error happened talking with FourSquare");
     });
   }
 
@@ -54,6 +55,12 @@ class App extends Component {
           return marker;
         })
       });
+  }
+
+  setError(error) {
+    this.setState({
+      errorMessage: error
+    })
   }
 
   render() {
@@ -73,6 +80,11 @@ class App extends Component {
             toggleInfoBox={(id) => this.toggleInfoBox(id)}
           />
         </div>
+        {this.state.errorMessage && (
+          <div class="error-message">
+            {this.state.errorMessage}
+          </div>
+        )}
       </main>
     );
   }
