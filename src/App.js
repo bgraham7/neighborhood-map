@@ -44,10 +44,39 @@ class App extends Component {
     });
   }
 
+  keyPressMove(key) {
+    if(!this.state.markers.length || (key !== 38 && key !== 40)) {
+      return;
+    }
+
+    var newIndex = 0;
+    var selected = this.state.markers.find(m=> m.isOpen);
+    if(selected) {
+      var currentIndex = this.state.markers.indexOf(selected);
+      var lastIndex = this.state.markers.length - 1;
+      switch(key) {
+        case 38: //up\
+          if(currentIndex == 0) {
+            newIndex = lastIndex;
+          } else {
+            newIndex = currentIndex - 1;
+          }
+          break;
+        case 40:
+          if(currentIndex != lastIndex) {
+            newIndex = currentIndex + 1;
+          }
+          break;
+      }
+    }
+    var marker = this.state.markers[newIndex];
+    this.toggleInfoBox(marker.id);
+  }
+
   toggleInfoBox(id) {
     this.setState({
       markers: this.state.markers.map(marker => {
-          if(marker.id == id) {
+          if(marker.id === id) {
             marker.isOpen = !marker.isOpen;
           } else {
             marker.isOpen = false;
@@ -70,6 +99,7 @@ class App extends Component {
           <MarkerContentBar 
             markers={this.state.markers}
             toggleInfoBox={(id) => this.toggleInfoBox(id)}
+            keyPressMove={(key) => this.keyPressMove(key)}
             searchPlaces={(query) => this.searchPlaces(query)}
           />
         </div>
@@ -81,7 +111,7 @@ class App extends Component {
           />
         </div>
         {this.state.errorMessage && (
-          <div class="error-message">
+          <div className="error-message">
             {this.state.errorMessage}
           </div>
         )}

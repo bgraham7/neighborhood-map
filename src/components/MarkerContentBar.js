@@ -11,6 +11,7 @@ class App extends Component {
       }
 
     // https://medium.com/@griffinmichl/implementing-debounce-in-javascript-eab51a12311e
+    // Prevents a function from running too often, wait is the number of milliseconds
     debounce(func, wait) {
         let timeout
         return function(...args) {
@@ -26,6 +27,12 @@ class App extends Component {
         }, 200);
     }
 
+    keyToggleMenu(key) {
+        if(key === 13 || key === 32) {
+            this.toggleMenu();
+        }
+    }
+
     toggleMenu() {
         this.setState({
             menuOpen: !this.state.menuOpen
@@ -35,11 +42,11 @@ class App extends Component {
   render() {
     return (
       <section className="content-bar">
-          <header class="header">
-            <div class="hamburger" onClick={() => this.toggleMenu()}>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+          <header className="header" onKeyUp={(e) => this.keyToggleMenu(e.which)}>
+            <div className="hamburger" onClick={() => this.toggleMenu()} tabIndex="0">
+                <div className="bar"></div>
+                <div className="bar"></div>
+                <div className="bar"></div>
             </div>
             <h1>NY Places</h1>
           </header>
@@ -51,13 +58,13 @@ class App extends Component {
                     className="search-box" type="text" />
                 <i className="fas fa-search search-icon"></i>
             </div>
-            <div className="places">
+            <ul className="places" tabIndex="0" onKeyUp={(e) => this.props.keyPressMove(e.which)}>
                 {this.props.markers.map(marker => (
-                    <div className={`place ${marker.isOpen? 'open': ''}`} 
+                    <li className={`place ${marker.isOpen? 'open': ''}`} 
                     onClick={() => this.props.toggleInfoBox(marker.id)}
-                    key={marker.id}>{marker.title}</div>
+                    key={marker.id}>{marker.title}</li>
                 ))}
-            </div>
+            </ul>
           </div>
           
       </section>

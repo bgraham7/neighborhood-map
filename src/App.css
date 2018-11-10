@@ -1,6 +1,3 @@
-#map {
-  height: 100vh;
-}
 /* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
@@ -19,7 +16,7 @@ main {
 }
 
 .map-wrapper {
-  height: 100vh; 
+  height: calc(100vh - 4em); 
   width: 100%;
 }
 
@@ -31,6 +28,10 @@ main {
   background-color: red;
   color: white;
   opacity: .7;
+}
+
+input:focus, div:focus {
+  outline: 1px solid blue;
 }
 
 @media screen and (min-width: 1000px) {

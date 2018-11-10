@@ -29,6 +29,16 @@
     background-color: grey;
 }
 
+.places {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.places:focus {
+    outline: 1px solid blue;
+}
+
 .place {
     color: white;
     padding: 5px 10px;
@@ -53,6 +63,10 @@
     padding-top: 5px;
     margin-left: 15px;
     cursor: pointer;
+}
+
+.hamburger:focus {
+    outline: 1px solid blue;
 }
 
 .bar {
