@@ -11,14 +11,30 @@ html, body {
 
 main {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .content-bar {
-  width: 250px;
+  width:100%;
 }
 
 .map-wrapper {
   height: 100vh; 
-  flex-grow: 1;
+  width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  main {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .content-bar {
+    width: 250px;
+  }
+  
+  .map-wrapper {
+    height: 100vh; 
+    flex-grow: 1;
+  }
 }

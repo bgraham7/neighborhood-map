@@ -1,5 +1,4 @@
 .content-bar {
-    height: 100vh;
     background-color: black;
 }
 
@@ -8,7 +7,8 @@
     margin: 0;
     text-align: 0;
     color: white;
-    border-bottom: 1px solid white;
+
+    position: relative;
 }
 
 .search-bar {
@@ -40,3 +40,52 @@
     background-color: white;
 }
 
+.header {
+    height: 4em;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid white;
+    box-sizing: border-box;
+}
+
+.hamburger {
+    padding-top: 5px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 30%;
+    margin-bottom: 4px;
+}
+
+.place-filter-pane {
+    background-color: black;
+    z-index: 100;
+    position:absolute;
+    left: -200%;
+    height: calc(100vh - 4em);
+    transition: left .2s ease-in-out;
+}
+
+.place-filter-pane.open {
+    left: 0;
+}
+
+@media screen and (min-width: 1000px) {
+    .content-bar {
+        height: 100vh;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .place-filter-pane {
+        position: static;
+    }
+}
