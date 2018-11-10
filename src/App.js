@@ -40,7 +40,7 @@ class App extends Component {
       });
     })
     .catch(function(err) {
-        this.setError("An error happened talking with FourSquare");
+      self.setError("An error happened talking with FourSquare");
     });
   }
 
@@ -56,17 +56,19 @@ class App extends Component {
       var lastIndex = this.state.markers.length - 1;
       switch(key) {
         case 38: //up\
-          if(currentIndex == 0) {
+          if(currentIndex === 0) {
             newIndex = lastIndex;
           } else {
             newIndex = currentIndex - 1;
           }
           break;
         case 40:
-          if(currentIndex != lastIndex) {
+          if(currentIndex !== lastIndex) {
             newIndex = currentIndex + 1;
           }
           break;
+        default:
+          return;
       }
     }
     var marker = this.state.markers[newIndex];
