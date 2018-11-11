@@ -24,15 +24,15 @@ class App extends Component {
     var self = this;
     fourSquare.searchPlaces(this.state.myCoords.lat, this.state.myCoords.lng, query)
     .then(function(data) {
-      var items = data.response.groups[0].items;
+      var venues = data.response.venues;
       let markers = [];
-      for(let i = 0; i < items.length; i++) {
-        let item = items[i];
+      for(let i = 0; i < venues.length; i++) {
+        let venue = venues[i];
         markers.push({
-          id: item.venue.id,
+          id: venue.id,
           isOpen: false,
-          position: { lat: item.venue.location.lat, lng: item.venue.location.lng },
-          title: item.venue.name
+          position: { lat: venue.location.lat, lng: venue.location.lng },
+          title: venue.name
         });
       }
       self.setState({
