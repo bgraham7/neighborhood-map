@@ -106,7 +106,8 @@ class App extends Component {
             searchPlaces={(query) => this.searchPlaces(query)}
           />
         </div>
-        <div className="map-wrapper">
+        <div className="map-wrapper" 
+            role="application" aria-label="Map with locations">
           <GoogleMapsErrorCatcher>
             <MapComponent 
               center={this.state.myCoords}

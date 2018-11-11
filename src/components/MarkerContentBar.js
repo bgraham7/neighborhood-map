@@ -54,6 +54,7 @@ class App extends Component {
           <div className={'place-filter-pane ' + (this.state.menuOpen? 'open' : '')} >
             <div className="search-bar">
                 <input 
+                    role="search" aria-label="Search box to filter locations"
                     onKeyUp={(e)=>this.searchPlaces(e.target.value)}
                     className="search-box" type="text" />
                 <i className="fas fa-search search-icon"></i>
