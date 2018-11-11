@@ -3,6 +3,7 @@ import './App.css';
 
 import MapComponent from './components/MapComponent';
 import MarkerContentBar from './components/MarkerContentBar';
+import GoogleMapsErrorCatcher from './components/GoogleMapsErrorCatcher';
 import * as fourSquare from "./apis/foursquare-api";
 
 class App extends Component {
@@ -106,11 +107,13 @@ class App extends Component {
           />
         </div>
         <div className="map-wrapper">
-          <MapComponent 
-            center={this.state.myCoords}
-            markers={this.state.markers}
-            toggleInfoBox={(id) => this.toggleInfoBox(id)}
-          />
+          <GoogleMapsErrorCatcher>
+            <MapComponent 
+              center={this.state.myCoords}
+              markers={this.state.markers}
+              toggleInfoBox={(id) => this.toggleInfoBox(id)}
+            />
+          </GoogleMapsErrorCatcher>
         </div>
         {this.state.errorMessage && (
           <div className="error-message">

@@ -6,8 +6,7 @@ import './MapComponent.css';
 
 const MapComponent = compose(
   withProps({
-    //googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDCmIPpcyP0wo2rE9LPDUYtFCHqapw2TIQ&v=3.exp&libraries=geometry,drawing,places",
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDCmIPpcyP0wo2rEPDUYtFCHqapw2TIQ&v=3.exp&libraries=geometry,drawing,places",
+    googleMapURL: "https://maps.googlepis.com/maps/api/js?key=AIzaSyDCmIPpcyP0wo2rE9LPDUYtFCHqapw2TIQ&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `100%` }} />,
     mapElement: <div style={{ height: `100%` }} />,
