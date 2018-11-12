@@ -6,6 +6,9 @@ Shows you locaions in New York city around Time Square. Uses Google Maps, FourSq
 ## Requirements
 Dependent on both Google Maps and FourSquare. If any issues reported, ensure both have a valid API key. Project is built with react and controlled with yarn. After first download run yarn install to get all the dependencies. yarn start to run the project.
 
+### Service Worker
+In order get to the service worker working, it must be built in production mode. Run yarn build. Once the project builds successfully, you'll need to run a webserver pointed at the /build directory to see the service worker in action. I recommend using the Google Chrome Dev Server extension.
+
 ## Contributors
 Feel free to contribute. I prefer you user Udacity style guides:  
 [CSS](http://udacity.github.io/frontend-nanodegree-styleguide/css.html)  
